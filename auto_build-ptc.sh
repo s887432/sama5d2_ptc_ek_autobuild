@@ -46,7 +46,7 @@ cd ${at91bootstrap}
 make mrproper
 make sama5d2_ptc_eknf_uboot_defconfig
 make -j8
-cp binarird/${at91bootstrap_resF} ./../${result_p}
+cp binaries/${at91bootstrap_resF} ./../${result_p}
 cd ..
 
 # step 3
