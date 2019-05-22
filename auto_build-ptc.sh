@@ -105,7 +105,7 @@ cd ${rootfs_path}
 make atmel_sama5d2_ptc_nf_defconfig
 make -j8
 
-cp output/image/${rootfs} ./../${result_p}
+cp output/images/${rootfs} ./../${result_p}
 cd ..
 
 # step 6
@@ -114,11 +114,11 @@ echo ""
 echo "############################################################"
 echo "############ Step 6: make u-boot env binary ################"
 echo "############################################################"
-source build_ubootenv.sh
+sh build_ubootenv.sh
 
 cp demo_linux_nandflash_usb.qml ${result_p}
 
-tar zcf ${release_package} ${result_P}
+tar zcf ${release_package} ${result_p}
 echo "############################################################"
 echo "############               Done             ################"
 echo "############################################################"
