@@ -84,7 +84,7 @@ fi
 git clone git://github.com/linux4sam/linux-at91.git
 cd ${kernel}
 make sama5_defconfig
-make ARCH=arm
+make ARCH=arm -j8
 cp arch/arm/boot/${kernel_resF} ./../${result_p}
 cp arch/arm/boot/dts/${dtb_resF} ./../${result_p}
 cd ..
