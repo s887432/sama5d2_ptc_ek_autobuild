@@ -16,6 +16,8 @@ dtb_resF="at91-sama5d2_ptc_ek.dtb"
 rootfs_path="buildroot-at91"
 rootfs="rootfs.ubi"
 
+release_package="sama5d2_ptc_nf.tar.gz"
+
 # step 1
 # prepare work aread
 # remove exist output folder
@@ -115,6 +117,8 @@ echo "############################################################"
 source build_ubootenv.sh
 
 cp demo_linux_nandflash_usb.qml ${result_p}
+
+tar zcf ${release_package} ${result_P}
 echo "############################################################"
 echo "############               Done             ################"
 echo "############################################################"
