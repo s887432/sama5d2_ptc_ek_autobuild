@@ -13,12 +13,13 @@ kernel="linux-at91"
 kernel_resF="zImage"
 dtb_resF="at91-sama5d2_ptc_ek.dtb"
 
-rootfs="buildroot-at91"
+rootfs_path="buildroot-at91"
+rootfs="rootfs.ubi"
 
 # step 1
 # prepare work aread
 # remove exist output folder
-3cho ""
+echo ""
 echo "############################################################"
 echo "########## Step 1 : prepare work folder ####################"
 echo "############################################################"
@@ -92,13 +93,24 @@ echo ""
 echo "############################################################"
 echo "########## Step 5 : download and make rootfs ###############"
 echo "############################################################"
-if [ -d ${rootfs} ]
+if [ -d ${rootfs_path} ]
 then
-	rm -rf ${rootfs}
+	rm -rf ${rootfs_path}
 fi
 git clone https://github.com/linux4sam/buildroot-at91.git
-cp atmel_sama5d2_ptc_nf_defconfig ${rootfs}/configs
-cd ${rootfs}
+cp atmel_sama5d2_ptc_nf_defconfig ${rootfs_path}/configs
+cd ${rootfs_path}
 make atmel_sama5d2_ptc_nf_defconfig
 make -j8
+
+cp output/image/${rootfs} ./../${result_p}
+cd ..
+
+# step 6
+# create u-boot env file
+echo ""
+echo "############################################################"
+echo "############ Step 6: make u-boot env binary ################"
+echo "############################################################"
+source build_ubootenv.sh
 
