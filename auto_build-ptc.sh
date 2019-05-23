@@ -18,6 +18,9 @@ rootfs="rootfs.ubi"
 
 release_package="sama5d2_ptc_nf.tar.gz"
 
+time1=$(date +'%H:%M:%S')
+sec1=$(date +%s -d ${time1})
+
 # step 1
 # prepare work aread
 # remove exist output folder
@@ -119,6 +122,13 @@ sh build_ubootenv.sh
 cp demo_linux_nandflash_usb.qml ${result_p}
 
 tar zcf ${release_package} ${result_p}
+
+time2=$(date +'%H:%M:%S')
+sec2=$(date +%s -d ${time2})
+diff=$(expr $sec2 - $sec1)
 echo "############################################################"
 echo "############               Done             ################"
+echo "############     T otal takes $(date +'%H:%M:%S' -ud @${diff})      ################"
 echo "############################################################"
+
+
